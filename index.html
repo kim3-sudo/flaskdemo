@@ -5,10 +5,40 @@
 		<meta name="description" content="Just a simple Flask webapp">
 		<meta name="author" content="Sejin Kim">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<h1>Flask Demo</h1>
-		<p>This is just a simple Flask demonstration.</p>
-		<p>This particular demo doesn't use <i>any</i> JavaScript to send its information to the Python script.</p>
+		<div class="container">
+			<h1>Flask Demo</h1>
+			<p>This is just a simple Flask demonstration.</p>
+			<p>This particular demo doesn't use <i>any</i> JavaScript to send its information to the Python script. It's just HTML, Python, and CSS.</p>
+			<p>There is a tiny bit of JavaScript, but its only purpose is to hide a div, and show it after you click the Submit button.</p>
+		</div>
+		<div class="container">
+			<p>To try this demo, fill out the form below, then click the Submit button.</p>
+		</div>
+		<div class="customform">
+			<form method="post" name="sampleform">
+				<div class="form-group">
+					<label for="name" class="p">Name: </label><br>
+					<input type="text" id="name" name="name" placeholder="Luke Skywalker">
+				</div>
+				<div class="form-group">
+					<label for="alignment" class="p">Alignment: </label><br>
+					<input type="radio" id="rebel" name="alignment" value="rebel">
+					<label for="rebel">Rebel Alliance</label><br>
+					<input type="radio" id="empire" name="alignment" value="empire">
+					<label for="empire">Galactic Empire</label><br>
+					<input type="radio" id="other" name="alignment" value="other">
+					<label for="other">Other alignment</label>
+				</div>
+				<button type="submit" class="btn btn-kenyon" onclick="showresults()">Submit</button>
+			</form>
+		</div>
+		<div class="container" id="answerdiv">
+			<p>Here's what Python did to your answers:</p>
+			<p>Your name: {{ processed_name }}</p>
+			<p>Your alignment: {{ processed_align }}</p>
+		</div>
 	</body>
 </html>
