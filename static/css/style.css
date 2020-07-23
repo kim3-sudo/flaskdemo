@@ -39,6 +39,12 @@ p {
 	font-family: 'Roboto Mono', monospace;
 }
 
+label {
+	cursor: default;
+	font-family: 'Roboto Mono', monospace;
+	padding: 5px;
+}
+
 .btn_kenyon {
 	color: #FFFFFF!important;
 	background-color: #4B2E84!important;
@@ -73,6 +79,8 @@ a:hover {
 	background-color: #E5E5E5;
 	border-radius: 10px;
 	padding: 10px;
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
 .container {

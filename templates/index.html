@@ -6,6 +6,8 @@
 		<meta name="author" content="Sejin Kim">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+		<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -18,21 +20,21 @@
 			<p>To try this demo, fill out the form below, then click the Submit button.</p>
 		</div>
 		<div class="customform">
-			<form method="post" name="sampleform">
+			<form method="post" name="sampleform" enctype="multipart/form-data">
 				<div class="form-group">
-					<label for="name" class="p">Name: </label><br>
-					<input type="text" id="name" name="name" placeholder="Luke Skywalker">
+					<label for="name">Name: </label><br>
+					<input type="text" id="name" name="name" placeholder="Luke Skywalker" value="">
 				</div>
 				<div class="form-group">
-					<label for="alignment" class="p">Alignment: </label><br>
-					<input type="radio" id="rebel" name="alignment" value="rebel">
-					<label for="rebel">Rebel Alliance</label><br>
-					<input type="radio" id="empire" name="alignment" value="empire">
-					<label for="empire">Galactic Empire</label><br>
-					<input type="radio" id="other" name="alignment" value="other">
-					<label for="other">Other alignment</label>
+					<label for="alignment">Alignment: </label><br>
+					<select id="alignment" name="alignment">
+						<option value="" disabled selected>Select one...</option>
+						<option value="rebel">Rebel Alliance</option>
+						<option value="empire">Galactic Empire</option>
+						<option value="other">Other Alignment</option>
+					</select>
 				</div>
-				<button type="submit" class="btn btn-kenyon" onclick="showresults()">Submit</button>
+				<button type="submit" class="btn btn_kenyon">Submit</button>
 			</form>
 		</div>
 		<div class="container" id="answerdiv">
