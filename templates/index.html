@@ -103,6 +103,15 @@
 			</div>
 			<p>Below, from lines 41-43, Flask is going to fill in the processed variables that I just returned in the Python script. Enclose the variable names in double-curly-braces for Flask to take control of that HTML chunk.</p>
 			<p>Finally, we're to this very text that you're reading right now!</p>
+			<h3>CSS: static/css/style.css</h3>
+			<p>You might've noticed that in the HTML, there isn't any inline style! That's because I've crammed it all into one CSS document, created a bunch of CSS classes, then referred to those classes here.</p>
+			<p>Notice how in this HTML document, there's classes that you've never seen, like <code>btn_kenyon</code>? That's surely not in Bootstrap!<br>
+			Well, if you look at style.css, you'll find that on line 54, there's a class called <code>btn_kenyon</code>. Every time I refer to that class in this HTML document, I'll get the style that's inside of those curly braces.</p>
+			<p>There are some cases where class precedence will cause issues. This means that two classes will be called for one asset that have overlapping properties.<br>
+			To avoid issues and definitively choose the style that we want, we can use the <code>!important</code> suffix on our CSS style attributes. It's important (pun not intended) to note that, you should use the <code>!important</code> suffix very sparingly, because there's no super-important suffix.<br>
+			Having a <code>!important</code> suffix will not overturn your inline CSS or header CSS. For context, your HTML will look for inline css first (you know, the <code>style="attribute: value;"</code> stuff). If it can't find any, then it'll check in the head for a non-linked stylesheet (so, if you wrote <code><style>p {font-family: 'Roboto Mono', monospace;}</style></code>, it'd choose that next. Finally, if it can't find any CSS inline or in the head, then it'll refer to external stylesheets.</p>
+			<p>You can also overwrite default styles. Notice in style.css how I've redefined the style for headings, paragraphs, labels, and links.</p>
+			<p>Lastly, you can use a @media tag to choose what happens when certain responsiveness actions occur. Try to shrink and expand this webpage horizontally (along the x-axis). Notice how <a href="#">link colors</a> and background colors change when you go above and beyond 700px. That's the job of the @media tags, like on line 69.</p>
 		</div>
 	</body>
 </html>
