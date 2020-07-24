@@ -17,8 +17,8 @@ Now, we return the blank HTML page, without anything filled. Because we're not e
 
 ```
 @app.route('flaskdemo')
-				def indexpage():
-				&tab;return render_template('./index.html')
+	def indexpage():
+	return render_template('./index.html')
 ```
 
 Now, when I do enter some material onto the page and make a POST request, I want to be able to read it, so that's what the material is from lines 10-40.
