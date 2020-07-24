@@ -7,14 +7,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-		<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 	</head>
 	<body>
 		<div class="container">
 			<h1>Flask Demo</h1>
+			<h2>Demonstration</h2>
 			<p>This is just a simple Flask demonstration.</p>
 			<p>This particular demo doesn't use <i>any</i> JavaScript to send its information to the Python script. It's just HTML, Python, and CSS.</p>
-			<p>There is a tiny bit of JavaScript, but its only purpose is to hide a div, and show it after you click the Submit button.</p>
 		</div>
 		<div class="container">
 			<p>To try this demo, fill out the form below, then click the Submit button.</p>
@@ -37,10 +36,57 @@
 				<button type="submit" class="btn btn_kenyon">Submit</button>
 			</form>
 		</div>
-		<div class="container" id="answerdiv">
+		<div class="container">
 			<p>Here's what Python did to your answers:</p>
-			<p>Your name: {{ processed_name }}</p>
-			<p>Your alignment: {{ processed_align }}</p>
+			<p>Your name: {{ processed_name }}<br>
+			Your name backwards: {{ processed_back }}<br>
+			Your alignment: {{ processed_align }}</p>
+		</div>
+		<div class="container">
+			<hr>
+		</div>
+		<div class="container">
+			<h2>How does this demo work?</h2>
+			<p>Here's the code explanation.</p>
+			<h3>Python: app.py</h3>
+			<p>We start by importing the libraries that we need:</p>
+			<div class="code_div">
+				<p>from flask import Flask, request, render_template<br>
+				import sys</p>
+			</div>
+			<p>Then, we name the Flask app explicitly. It's possible to use the implicit naming, but it can obscure readibility and sometimes, it just screws up because you mislabeled something. It's just good to have as a sanity check.</p>
+			<div class="code_div">
+				<p>app = Flask(__name__)
+			</div>
+			<p>Now, we return the blank HTML page, without anything filled. Because we're not expecting any content, we're just going to leave the method empty. You can link to any <code>.html</code> file in the templates directory. I'm also laying out which path I'll access my Flask app at: documentroot/flaskdemo.</p>
+			<div class="code_div">
+				<p>@app.route('flaskdemo')<br>
+				def indexpage():<br>
+				&tab;return render_template('./index.html')</p>
+			</div>
+			<p>Now, when I do enter some material onto the page and make a POST request, I want to be able to read it, so that's what the material is from lines 10-40.
+			<br>This should all be fairly self-explanatory - it's just a Python function with some web stuff in it.</p>
+			<p>On line 12:</p>
+			<div class="code_div">
+				<p>if request.method =='POST':</p>
+			</div>
+			<p>I do want to make sure that someone isn't trying to run a GET request, otherwise my Python code will freak out and not work properly. If a GET request is made, the function will just return empty variables.</p>
+			<p>In line 14:</p>
+			<div class="code_div">
+				<p>name = request.form.get('name', False)
+			</div>
+			<p>I'm grabbing an element from the HTML by the element name (not to be confused with the element ID - they're not the same thing!<br>
+			I need to specify a default value (in this case, False), otherwise my Python interpreter won't be able to execute the full function, and Flask will freak and throw a 400 error (bad request).<br>
+			This function comes from the request class, which is part of the Flask library.</p>
+			<p>I'm doing the same thing with the alignment element.</p>
+			<p>In lines 32-34, I print some stuff to the console - this is just regular Python after all. I do need to specify where I'm making my prints to, the system console - that's why I need to load the sys library.</p>
+			<p>Finally, in line 37, I return the render template with the variables: </p>
+			<div class="code_div">
+				<p>return render_template('index.html',processed_name=processed_name, processed_align=processed_align)</p>
+			</div>
+			<p>I'm returning the same variables into the same HTML document, but I've put some special sauce in the HTML document that will let me read those Flask variables.</p>
+			<h3>HTML: templates/index.html</h3>
+			<p>For the most part, this is just regular HTML.</p>
 		</div>
 	</body>
 </html>
