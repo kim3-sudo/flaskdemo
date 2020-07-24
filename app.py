@@ -33,9 +33,6 @@ def index():
 		print(name, file=sys.stdout)
 		print(align, file=sys.stdout)
 
-		# Prepare the data to send back to HTML
-	#	output = execute('./request.py')
-
 	# Return the Flask rendering template
 	return render_template('index.html',processed_name=processed_name, processed_align=processed_align)
 
