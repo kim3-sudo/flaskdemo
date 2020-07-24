@@ -6,6 +6,7 @@
 		<meta name="author" content="Sejin Kim">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 	</head>
 	<body>
@@ -51,16 +52,16 @@
 			<h3>Python: app.py</h3>
 			<p>We start by importing the libraries that we need:</p>
 			<div class="code_div">
-				<p>from flask import Flask, request, render_template<br>
+				<p class="code">from flask import Flask, request, render_template<br>
 				import sys</p>
 			</div>
 			<p>Then, we name the Flask app explicitly. It's possible to use the implicit naming, but it can obscure readibility and sometimes, it just screws up because you mislabeled something. It's just good to have as a sanity check.</p>
 			<div class="code_div">
-				<p>app = Flask(__name__)
+				<p class="code">app = Flask(__name__)
 			</div>
 			<p>Now, we return the blank HTML page, without anything filled. Because we're not expecting any content, we're just going to leave the method empty. You can link to any <code>.html</code> file in the templates directory. I'm also laying out which path I'll access my Flask app at: documentroot/flaskdemo.</p>
 			<div class="code_div">
-				<p>@app.route('flaskdemo')<br>
+				<p class="code">@app.route('flaskdemo')<br>
 				def indexpage():<br>
 				&tab;return render_template('./index.html')</p>
 			</div>
@@ -68,12 +69,12 @@
 			<br>This should all be fairly self-explanatory - it's just a Python function with some web stuff in it.</p>
 			<p>On line 12:</p>
 			<div class="code_div">
-				<p>if request.method =='POST':</p>
+				<p class="code">if request.method =='POST':</p>
 			</div>
 			<p>I do want to make sure that someone isn't trying to run a GET request, otherwise my Python code will freak out and not work properly. If a GET request is made, the function will just return empty variables.</p>
 			<p>In line 14:</p>
 			<div class="code_div">
-				<p>name = request.form.get('name', False)
+				<p class="code">name = request.form.get('name', False)
 			</div>
 			<p>I'm grabbing an element from the HTML by the element name (not to be confused with the element ID - they're not the same thing!<br>
 			I need to specify a default value (in this case, False), otherwise my Python interpreter won't be able to execute the full function, and Flask will freak and throw a 400 error (bad request).<br>
@@ -82,31 +83,31 @@
 			<p>In lines 32-34, I print some stuff to the console - this is just regular Python after all. I do need to specify where I'm making my prints to, the system console - that's why I need to load the sys library.</p>
 			<p>Finally, in line 37, I return the render template with the variables: </p>
 			<div class="code_div">
-				<p>return render_template('index.html',processed_name=processed_name, processed_align=processed_align)</p>
+				<p class="code">return render_template('index.html',processed_name=processed_name, processed_align=processed_align)</p>
 			</div>
 			<p>I'm returning the same variables into the same HTML document, but I've put some special sauce in the HTML document that will let me read those Flask variables.</p>
 			<h3>HTML: templates/index.html</h3>
 			<p>For the most part, this is just regular HTML.</p>
-			<p>On line 9, I do need to explicitly state which stylesheet I want to pull in, since I'm using an external stylesheet.<br>
+			<p>On line 10, I do need to explicitly state which stylesheet I want to pull in, since I'm using an external stylesheet.<br>
 			Of note is, I'm <i>not</i> using Bootstrap or jQuery here. It's just a lot of code that I really don't need. Instead, I made my own CSS classes.<br>
 			We'll go over the CSS classes later.</p>
 			<p>The specific syntax that I'm using for the <code>href</code> is different than you might use for Apache or Nginx, though. Since we're using Flask, we need to specify that our stylesheet is a static object.</p>
 			<div class="code_div">
-				<p>href="{{ url_for('static', filename='css/style.css') }}"</p>
+				<p class="code">href="{{ url_for('static', filename='css/style.css') }}"</p>
 			</div>
-			<p>The next interesting thing comes in line 22, where I create the form.<br>
+			<p>The next interesting thing comes in line 23, where I create the form.<br>
 			I need to explicitly state the method that this form is operating in: POST. You should also give your form a name. It's a good idea to also explicitly state the encoding type (<code>multipart/form-data</code>), though this isn't entirely necessary.</p>
 			<p>The rest of the form is constructed as you'd otherwise construct a form.</p>
 			<p>To inform the form that I want to make the POST request, I need to explicitly mention that the button type at the bottom of the form (line 36) should be a submit button.</p>
 			<div class="code_div">
-				<code><button type="submit" class="btn btn_kenyon">Submit</button></code>
+				<p class="code">button type="submit" class="btn btn_kenyon">Submit</button</code>
 			</div>
-			<p>Below, from lines 41-43, Flask is going to fill in the processed variables that I just returned in the Python script. Enclose the variable names in double-curly-braces for Flask to take control of that HTML chunk.</p>
+			<p>Below, from lines 42-44, Flask is going to fill in the processed variables that I just returned in the Python script. Enclose the variable names in double-curly-braces for Flask to take control of that HTML chunk.</p>
 			<p>Finally, we're to this very text that you're reading right now!</p>
 			<h3>CSS: static/css/style.css</h3>
 			<p>You might've noticed that in the HTML, there isn't any inline style! That's because I've crammed it all into one CSS document, created a bunch of CSS classes, then referred to those classes here.</p>
 			<p>Notice how in this HTML document, there's classes that you've never seen, like <code>btn_kenyon</code>? That's surely not in Bootstrap!<br>
-			Well, if you look at style.css, you'll find that on line 54, there's a class called <code>btn_kenyon</code>. Every time I refer to that class in this HTML document, I'll get the style that's inside of those curly braces.</p>
+			Well, if you look at style.css, you'll find that on line 55, there's a class called <code>btn_kenyon</code>. Every time I refer to that class in this HTML document, I'll get the style that's inside of those curly braces.</p>
 			<p>There are some cases where class precedence will cause issues. This means that two classes will be called for one asset that have overlapping properties.<br>
 			To avoid issues and definitively choose the style that we want, we can use the <code>!important</code> suffix on our CSS style attributes. It's important (pun not intended) to note that, you should use the <code>!important</code> suffix very sparingly, because there's no super-important suffix.<br>
 			Having a <code>!important</code> suffix will not overturn your inline CSS or header CSS. For context, your HTML will look for inline css first (you know, the <code>style="attribute: value;"</code> stuff). If it can't find any, then it'll check in the head for a non-linked stylesheet (so, if you wrote <code><style>p {font-family: 'Roboto Mono', monospace;}</style></code>, it'd choose that next. Finally, if it can't find any CSS inline or in the head, then it'll refer to external stylesheets.</p>
