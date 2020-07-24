@@ -1,4 +1,4 @@
-HTML: templates/index.html
+# HTML: templates/index.html
 
 For the most part, this is just regular HTML.
 
