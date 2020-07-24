@@ -14,6 +14,7 @@ def index():
 		name = request.form.get('name', False)
 		# Do processing on the name
 		processed_name = name.upper()
+		processed_back = processed_name [::-1]
 
 		# Get the alignment from the HTML form
 		align = request.form.get('alignment', False)
@@ -34,7 +35,7 @@ def index():
 		print(align, file=sys.stdout)
 
 	# Return the Flask rendering template
-	return render_template('index.html',processed_name=processed_name, processed_align=processed_align)
+	return render_template('index.html',processed_name=processed_name, processed_back=processed_back, processed_align=processed_align)
 
 if __name__ == '__main__':
 	app.run

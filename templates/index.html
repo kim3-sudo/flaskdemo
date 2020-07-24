@@ -87,6 +87,22 @@
 			<p>I'm returning the same variables into the same HTML document, but I've put some special sauce in the HTML document that will let me read those Flask variables.</p>
 			<h3>HTML: templates/index.html</h3>
 			<p>For the most part, this is just regular HTML.</p>
+			<p>On line 9, I do need to explicitly state which stylesheet I want to pull in, since I'm using an external stylesheet.<br>
+			Of note is, I'm <i>not</i> using Bootstrap or jQuery here. It's just a lot of code that I really don't need. Instead, I made my own CSS classes.<br>
+			We'll go over the CSS classes later.</p>
+			<p>The specific syntax that I'm using for the <code>href</code> is different than you might use for Apache or Nginx, though. Since we're using Flask, we need to specify that our stylesheet is a static object.</p>
+			<div class="code_div">
+				<p>href="{{ url_for('static', filename='css/style.css') }}"</p>
+			</div>
+			<p>The next interesting thing comes in line 22, where I create the form.<br>
+			I need to explicitly state the method that this form is operating in: POST. You should also give your form a name. It's a good idea to also explicitly state the encoding type (<code>multipart/form-data</code>), though this isn't entirely necessary.</p>
+			<p>The rest of the form is constructed as you'd otherwise construct a form.</p>
+			<p>To inform the form that I want to make the POST request, I need to explicitly mention that the button type at the bottom of the form (line 36) should be a submit button.</p>
+			<div class="code_div">
+				<code><button type="submit" class="btn btn_kenyon">Submit</button></code>
+			</div>
+			<p>Below, from lines 41-43, Flask is going to fill in the processed variables that I just returned in the Python script. Enclose the variable names in double-curly-braces for Flask to take control of that HTML chunk.</p>
+			<p>Finally, we're to this very text that you're reading right now!</p>
 		</div>
 	</body>
 </html>
